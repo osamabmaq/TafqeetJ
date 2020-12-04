@@ -36,19 +36,19 @@ public class QuantitiveNumberNamesFactory {
     private QuantitiveNumberNamesFactory() {
     }
 
-    public static QuantitiveNumberNames getThousand() {
+    public static QuantitiveNumberNames getThousands() {
         return thousand;
     }
 
-    public static QuantitiveNumberNames getMillion() {
+    public static QuantitiveNumberNames getMillions() {
         return million;
     }
 
-    public static QuantitiveNumberNames getBillion() {
+    public static QuantitiveNumberNames getBillions() {
         return billion;
     }
 
-    public static QuantitiveNumberNames getTrillion() {
+    public static QuantitiveNumberNames getTrillions() {
         return trillion;
     }
 }

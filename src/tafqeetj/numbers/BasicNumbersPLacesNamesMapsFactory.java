@@ -56,19 +56,19 @@ public class BasicNumbersPLacesNamesMapsFactory {
         );
     }
 
-    public static Map<Integer, String> getOnes() {
+    public static Map<Integer, String> getOnesMap() {
         return ones;
     }
 
-    public static Map<Integer, String> getComposedNumbers() {
+    public static Map<Integer, String> getComposedNumbersMap() {
         return composedNumbers;
     }
 
-    public static Map<Integer, String> getTens() {
+    public static Map<Integer, String> getTensMap() {
         return tens;
     }
 
-    public static Map<Integer, String> getHundreds() {
+    public static Map<Integer, String> getHundredsMap() {
         return hundreds;
     }
 }

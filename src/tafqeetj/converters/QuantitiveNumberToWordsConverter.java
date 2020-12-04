@@ -1,17 +1,19 @@
 package tafqeetj.converters;
 
-import tafqeetj.numbers.BasicNumbersPLacesNamesMapsFactory;
 import tafqeetj.numbers.QuantitiveNumberNames;
 import tafqeetj.numbers.ThreeDigitsNumber;
 
 public class QuantitiveNumberToWordsConverter {
     private final QuantitiveNumberNames quantitiveNumberNames;
+    private final BasicNumberToWordsConverter basicNumberConverter = BasicNumberToWordsConverter.getInstance();
 
     public QuantitiveNumberToWordsConverter(QuantitiveNumberNames quantitiveNumberNames) {
         this.quantitiveNumberNames = quantitiveNumberNames;
     }
 
     public String convert(ThreeDigitsNumber threeDigitsNumber) {
+        if (threeDigitsNumber.getNumber() == 0)
+            return "";
         StringBuilder numberInWords = new StringBuilder();
         ThreeDigitsNumberDisassembler numberDisassembler = new ThreeDigitsNumberDisassembler(threeDigitsNumber);
         int numberAfterHundredsConverting = threeDigitsNumber.getNumber();
@@ -21,7 +23,7 @@ public class QuantitiveNumberToWordsConverter {
             if (numberDisassembler.getHundreds() == 200 && numberAfterHundredsConverting < 3)
                 numberInWords.append("مئتا");
             else
-                numberInWords.append(convertHundreds(numberDisassembler.getHundreds()));
+                numberInWords.append(basicNumberConverter.convertHundreds(numberDisassembler.getHundreds()));
         }
 
         if (numberAfterHundredsConverting < 3)
@@ -54,46 +56,47 @@ public class QuantitiveNumberToWordsConverter {
     }
 
     private String convertNumberBetweenThreeAndNinetyNine(int number) {
-        StringBuilder numberInWords = new StringBuilder();
         ThreeDigitsNumberDisassembler numberDisassembler =
                 new ThreeDigitsNumberDisassembler(ThreeDigitsNumber.of(number));
-        if (number > 2 && number < 10)
-            numberInWords.append(convertOnes(numberDisassembler.getOnes()))
-                    .append(" ")
-                    .append(quantitiveNumberNames.getNameWhenBetweenThreeAndTen());
+        if (number < 10)
+            return convertOnes(numberDisassembler);
         else if (number == 10)
-            numberInWords.append(convertTens(10))
-                    .append(" ")
-                    .append(quantitiveNumberNames.getNameWhenBetweenThreeAndTen());
-        else if (number > 10 && number < 20)
-            numberInWords.append(convertComposedNumbers(numberDisassembler.getComposedNumber()))
-                    .append(" ")
-                    .append(quantitiveNumberNames.getNameWhenBetweenElevenAndNinetyNine());
-        else if (number > 19) {
-            if (numberDisassembler.getThreeDigitsNumber().containsOnes())
-                numberInWords.append(convertOnes(numberDisassembler.getOnes()))
-                        .append(" و")
-                        .append(convertTens(numberDisassembler.getTens()));
-            else numberInWords.append(convertTens(numberDisassembler.getTens()));
-            numberInWords.append(" ")
-                    .append(quantitiveNumberNames.getNameWhenBetweenElevenAndNinetyNine());
-        }
-        return numberInWords.toString();
+            return convertTen();
+        else if (number < 20)
+            return convertComposedNumber(numberDisassembler);
+        else
+            return convertTensWithOnes(numberDisassembler);
     }
 
-    private String convertHundreds(int hundreds) {
-        return BasicNumbersPLacesNamesMapsFactory.getHundreds().get(hundreds);
+    private String convertOnes(ThreeDigitsNumberDisassembler numberDisassembler) {
+        return basicNumberConverter.convertOnes(numberDisassembler.getOnes()) +
+                " " +
+                quantitiveNumberNames.getNameWhenBetweenThreeAndTen();
     }
 
-    private String convertTens(int tens) {
-        return BasicNumbersPLacesNamesMapsFactory.getTens().get(tens);
+    private String convertTen() {
+        return basicNumberConverter.convertTens(10)
+                + " "
+                + quantitiveNumberNames.getNameWhenBetweenThreeAndTen();
     }
 
-    private String convertOnes(int ones) {
-        return BasicNumbersPLacesNamesMapsFactory.getOnes().get(ones);
+    private String convertComposedNumber(ThreeDigitsNumberDisassembler numberDisassembler) {
+       return basicNumberConverter.convertComposedNumbers(numberDisassembler.getComposedNumber())
+                + " "
+                + quantitiveNumberNames.getNameWhenBetweenElevenAndNinetyNine();
     }
 
-    private String convertComposedNumbers(int composedNumber) {
-        return BasicNumbersPLacesNamesMapsFactory.getComposedNumbers().get(composedNumber);
+    private String convertTensWithOnes(ThreeDigitsNumberDisassembler numberDisassembler) {
+        StringBuilder numberInWords = new StringBuilder();
+        if (numberDisassembler.getThreeDigitsNumber().containsOnes())
+            numberInWords.append(basicNumberConverter.convertOnes(numberDisassembler.getOnes()))
+                    .append(" و")
+                    .append(basicNumberConverter.convertTens(numberDisassembler.getTens()));
+        else
+            numberInWords.append(basicNumberConverter.convertTens(numberDisassembler.getTens()));
+
+        return numberInWords.append(" ")
+                .append(quantitiveNumberNames.getNameWhenBetweenElevenAndNinetyNine())
+                .toString();
     }
 }
