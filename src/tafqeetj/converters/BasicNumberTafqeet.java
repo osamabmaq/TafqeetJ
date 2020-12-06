@@ -1,18 +1,13 @@
 package tafqeetj.converters;
 
-import tafqeetj.numbers.BasicNumbersPLacesNamesMapsFactory;
+import tafqeetj.numbers.BasicNumberPlacesNames;
 import tafqeetj.numbers.ThreeDigitsNumber;
 
-public class BasicNumberToWordsConverter {
-    private static BasicNumberToWordsConverter instance;
+public class BasicNumberTafqeet {
+    private final BasicNumberPlacesNames basicNumberPlacesNames;
 
-    private BasicNumberToWordsConverter() {
-    }
-
-    public static synchronized BasicNumberToWordsConverter getInstance() {
-        if (instance == null)
-            instance = new BasicNumberToWordsConverter();
-        return instance;
+    public BasicNumberTafqeet(BasicNumberPlacesNames basicNumberPlacesNames) {
+        this.basicNumberPlacesNames = basicNumberPlacesNames;
     }
 
     public String convert(ThreeDigitsNumber threeDigitsNumber) {
@@ -43,26 +38,26 @@ public class BasicNumberToWordsConverter {
     }
 
     public String convertOnes(int number) {
-        if (!BasicNumbersPLacesNamesMapsFactory.getOnesMap().containsKey(number))
+        if (!basicNumberPlacesNames.getOnesMap().containsKey(number))
             throw new IllegalArgumentException(number + " is not a one");
-        return BasicNumbersPLacesNamesMapsFactory.getOnesMap().get(number);
+        return basicNumberPlacesNames.getOnesMap().get(number);
     }
 
     public String convertComposedNumbers(int number) {
-        if (!BasicNumbersPLacesNamesMapsFactory.getComposedNumbersMap().containsKey(number))
+        if (!basicNumberPlacesNames.getComposedNumbersMap().containsKey(number))
             throw new IllegalArgumentException(number + " is not a composed number");
-        return BasicNumbersPLacesNamesMapsFactory.getComposedNumbersMap().get(number);
+        return basicNumberPlacesNames.getComposedNumbersMap().get(number);
     }
 
     public String convertTens(int number) {
-        if (!BasicNumbersPLacesNamesMapsFactory.getTensMap().containsKey(number))
+        if (!basicNumberPlacesNames.getTensMap().containsKey(number))
             throw new IllegalArgumentException(number + " is not a ten");
-        return BasicNumbersPLacesNamesMapsFactory.getTensMap().get(number);
+        return basicNumberPlacesNames.getTensMap().get(number);
     }
 
     public String convertHundreds(int number) {
-        if (!BasicNumbersPLacesNamesMapsFactory.getHundredsMap().containsKey(number))
+        if (!basicNumberPlacesNames.getHundredsMap().containsKey(number))
             throw new IllegalArgumentException(number + " is not a hundred");
-        return BasicNumbersPLacesNamesMapsFactory.getHundredsMap().get(number);
+        return basicNumberPlacesNames.getHundredsMap().get(number);
     }
 }

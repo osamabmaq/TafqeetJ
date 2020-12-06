@@ -5,10 +5,12 @@ import tafqeetj.numbers.ThreeDigitsNumber;
 
 public class QuantitiveNumberToWordsConverter {
     private final QuantitiveNumberNames quantitiveNumberNames;
-    private final BasicNumberToWordsConverter basicNumberConverter = BasicNumberToWordsConverter.getInstance();
+    private final BasicNumberTafqeet basicNumberConverter;
 
-    public QuantitiveNumberToWordsConverter(QuantitiveNumberNames quantitiveNumberNames) {
+    public QuantitiveNumberToWordsConverter(QuantitiveNumberNames quantitiveNumberNames,
+                                            BasicNumberTafqeet basicNumberConverter) {
         this.quantitiveNumberNames = quantitiveNumberNames;
+        this.basicNumberConverter = basicNumberConverter;
     }
 
     public String convert(ThreeDigitsNumber threeDigitsNumber) {

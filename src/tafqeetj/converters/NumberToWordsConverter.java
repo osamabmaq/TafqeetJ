@@ -1,24 +1,24 @@
 package tafqeetj.converters;
 
-import tafqeetj.numbers.BasicNumbersPLacesNamesMapsFactory;
 import tafqeetj.numbers.ThreeDigitsNumber;
 
 import java.util.Map;
 
 public class NumberToWordsConverter {
     private final NumberToThreeDigitsNumberGroupsDivider divider = new NumberToThreeDigitsNumberGroupsDivider();
+    private final BasicNumberTafqeet basicNumberTafqeet;
+    private final QuantitiveNumberTafqeetFactory quantitiveNumberTafqeetFactory;
+
+    public NumberToWordsConverter(BasicNumberTafqeet basicNumberTafqeet,
+                                  QuantitiveNumberTafqeetFactory quantitiveNumberTafqeetFactory){
+        this.basicNumberTafqeet = basicNumberTafqeet;
+        this.quantitiveNumberTafqeetFactory = quantitiveNumberTafqeetFactory;
+    }
 
     public String convert(int number) {
         if (number == 0)
-            return BasicNumbersPLacesNamesMapsFactory.getOnesMap().get(0);
-        if (number < 0)
-            return convertNegativeNumber(number);
+            return "صفر";
         return convertNumber(divider.divide(number)).toString();
-    }
-
-    private String convertNegativeNumber(int number) {
-        number = Math.abs(number);
-        return ("سالب ") + convertNumber(divider.divide(number)).toString();
     }
 
     private NumberInWords convertNumber(Map<String, ThreeDigitsNumber> threeDigitsNumberMap) {
@@ -33,15 +33,14 @@ public class NumberToWordsConverter {
 
     private String convertBasicNumberIfPresent(Map<String, ThreeDigitsNumber> threeDigitsNumberMap) {
         if (threeDigitsNumberMap.containsKey("basicNumberGroup"))
-            return BasicNumberToWordsConverter.getInstance()
-                    .convert(threeDigitsNumberMap.get("basicNumberGroup"));
+            return basicNumberTafqeet.convert(threeDigitsNumberMap.get("basicNumberGroup"));
         return "";
     }
 
     private String convertThreeDigitsNumberIfPresent(String numberGroupName,
                                                      Map<String, ThreeDigitsNumber> threeDigitsNumberMap) {
         if (threeDigitsNumberMap.containsKey(numberGroupName))
-            return QuantitiveNumberToWordsConvertersFactory.getConverter(numberGroupName)
+            return quantitiveNumberTafqeetFactory.getTafqeetObject(numberGroupName)
                     .convert(threeDigitsNumberMap.get(numberGroupName));
         return "";
     }

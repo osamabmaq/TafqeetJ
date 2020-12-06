@@ -1,8 +1,10 @@
-package tafqeetj.numbers;
+package tafqeetj.numbers.negative;
+
+import tafqeetj.numbers.BasicNumberPlacesNames;
 
 import java.util.Map;
 
-public class BasicNumbersPLacesNamesMapsFactory {
+public class NegativeBasicNumberPlacesNames implements BasicNumberPlacesNames {
     private final static Map<Integer, String> ones;
     private final static Map<Integer, String> composedNumbers;
     private final static Map<Integer, String> tens;
@@ -12,7 +14,7 @@ public class BasicNumbersPLacesNamesMapsFactory {
         ones = Map.ofEntries(
                 Map.entry(0, "صفر"),
                 Map.entry(1, "واحد"),
-                Map.entry(2, "إثنان"),
+                Map.entry(2, "إثنين"),
                 Map.entry(3, "ثلاثة"),
                 Map.entry(4, "أربعة"),
                 Map.entry(5, "خمسة"),
@@ -23,7 +25,7 @@ public class BasicNumbersPLacesNamesMapsFactory {
         );
         composedNumbers = Map.ofEntries(
                 Map.entry(11, "أحد عشر"),
-                Map.entry(12, "إثنا عشر"),
+                Map.entry(12, "إثني عشر"),
                 Map.entry(13, "ثلاثة عشر"),
                 Map.entry(14, "أربعة عشر"),
                 Map.entry(15, "خمسة عشر"),
@@ -34,18 +36,18 @@ public class BasicNumbersPLacesNamesMapsFactory {
         );
         tens = Map.ofEntries(
                 Map.entry(10, "عشرة"),
-                Map.entry(20, "عشرون"),
-                Map.entry(30, "ثلاثون"),
-                Map.entry(40, "أربعون"),
-                Map.entry(50, "خمسون"),
-                Map.entry(60, "ستون"),
-                Map.entry(70, "سبعون"),
-                Map.entry(80, "ثمانون"),
-                Map.entry(90, "تسعون")
+                Map.entry(20, "عشرين"),
+                Map.entry(30, "ثلاثين"),
+                Map.entry(40, "أربعين"),
+                Map.entry(50, "خمسين"),
+                Map.entry(60, "ستين"),
+                Map.entry(70, "سبعين"),
+                Map.entry(80, "ثمانين"),
+                Map.entry(90, "تسعين")
         );
         hundreds = Map.ofEntries(
                 Map.entry(100, "مئة"),
-                Map.entry(200, "مئتان"),
+                Map.entry(200, "مئتين"),
                 Map.entry(300, "ثلاثمئة"),
                 Map.entry(400, "أربعمئة"),
                 Map.entry(500, "خمسمئة"),
@@ -56,19 +58,33 @@ public class BasicNumbersPLacesNamesMapsFactory {
         );
     }
 
-    public static Map<Integer, String> getOnesMap() {
+    private static final NegativeBasicNumberPlacesNames instance =
+            new NegativeBasicNumberPlacesNames();
+
+    private NegativeBasicNumberPlacesNames() {
+    }
+
+    public static NegativeBasicNumberPlacesNames getInstance() {
+        return instance;
+    }
+
+    @Override
+    public Map<Integer, String> getOnesMap() {
         return ones;
     }
 
-    public static Map<Integer, String> getComposedNumbersMap() {
+    @Override
+    public Map<Integer, String> getComposedNumbersMap() {
         return composedNumbers;
     }
 
-    public static Map<Integer, String> getTensMap() {
+    @Override
+    public Map<Integer, String> getTensMap() {
         return tens;
     }
 
-    public static Map<Integer, String> getHundredsMap() {
+    @Override
+    public Map<Integer, String> getHundredsMap() {
         return hundreds;
     }
 }
