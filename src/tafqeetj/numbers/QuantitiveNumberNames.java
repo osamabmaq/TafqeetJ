@@ -1,7 +1,5 @@
 package tafqeetj.numbers;
 
-import java.util.Objects;
-
 public class QuantitiveNumberNames {
     private final String nameWhenEqualsOne;
     private final String nameWhenEqualsTwo;
@@ -32,27 +30,6 @@ public class QuantitiveNumberNames {
 
     public String getNameWhenBetweenElevenAndNinetyNine() {
         return nameWhenBetweenElevenAndNinetyNine;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        QuantitiveNumberNames that = (QuantitiveNumberNames) o;
-        return nameWhenEqualsOne.equals(that.nameWhenEqualsOne) &&
-                nameWhenEqualsTwo.equals(that.nameWhenEqualsTwo) &&
-                nameWhenBetweenThreeAndTen.equals(that.nameWhenBetweenThreeAndTen) &&
-                nameWhenBetweenElevenAndNinetyNine.equals(that.nameWhenBetweenElevenAndNinetyNine);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(
-                nameWhenEqualsOne,
-                nameWhenEqualsTwo,
-                nameWhenBetweenThreeAndTen,
-                nameWhenBetweenElevenAndNinetyNine
-        );
     }
 
     @Override

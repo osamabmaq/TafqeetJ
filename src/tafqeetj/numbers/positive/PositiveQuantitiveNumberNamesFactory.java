@@ -47,18 +47,22 @@ public class PositiveQuantitiveNumberNamesFactory implements QuantitiveNumberNam
         return instance;
     }
 
+    @Override
     public QuantitiveNumberNames getThousands() {
         return thousand;
     }
 
+    @Override
     public QuantitiveNumberNames getMillions() {
         return million;
     }
 
+    @Override
     public QuantitiveNumberNames getBillions() {
         return billion;
     }
 
+    @Override
     public QuantitiveNumberNames getTrillions() {
         return trillion;
     }

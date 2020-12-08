@@ -14,7 +14,7 @@ public class NegativeBasicNumberPlacesNames implements BasicNumberPlacesNames {
         ones = Map.ofEntries(
                 Map.entry(0, "صفر"),
                 Map.entry(1, "واحد"),
-                Map.entry(2, "إثنين"),
+                Map.entry(2, "اثنين"),
                 Map.entry(3, "ثلاثة"),
                 Map.entry(4, "أربعة"),
                 Map.entry(5, "خمسة"),
@@ -25,7 +25,7 @@ public class NegativeBasicNumberPlacesNames implements BasicNumberPlacesNames {
         );
         composedNumbers = Map.ofEntries(
                 Map.entry(11, "أحد عشر"),
-                Map.entry(12, "إثني عشر"),
+                Map.entry(12, "اثني عشر"),
                 Map.entry(13, "ثلاثة عشر"),
                 Map.entry(14, "أربعة عشر"),
                 Map.entry(15, "خمسة عشر"),
@@ -58,13 +58,14 @@ public class NegativeBasicNumberPlacesNames implements BasicNumberPlacesNames {
         );
     }
 
-    private static final NegativeBasicNumberPlacesNames instance =
-            new NegativeBasicNumberPlacesNames();
+    private static NegativeBasicNumberPlacesNames instance;
 
     private NegativeBasicNumberPlacesNames() {
     }
 
-    public static NegativeBasicNumberPlacesNames getInstance() {
+    public synchronized static NegativeBasicNumberPlacesNames getInstance() {
+        if (instance == null)
+            instance = new NegativeBasicNumberPlacesNames();
         return instance;
     }
 

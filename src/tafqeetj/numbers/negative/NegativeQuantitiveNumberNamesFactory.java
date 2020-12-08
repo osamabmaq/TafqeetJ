@@ -36,29 +36,33 @@ public class NegativeQuantitiveNumberNamesFactory implements QuantitiveNumberNam
         );
     }
 
-    private static NegativeQuantitiveNumberNamesFactory instance;
+    private static QuantitiveNumberNamesFactory instance;
 
     private NegativeQuantitiveNumberNamesFactory() {
     }
 
-    public synchronized static NegativeQuantitiveNumberNamesFactory getInstance() {
+    public synchronized static QuantitiveNumberNamesFactory getInstance() {
         if (instance == null)
             instance = new NegativeQuantitiveNumberNamesFactory();
         return instance;
     }
 
+    @Override
     public QuantitiveNumberNames getThousands() {
         return thousand;
     }
 
+    @Override
     public QuantitiveNumberNames getMillions() {
         return million;
     }
 
+    @Override
     public QuantitiveNumberNames getBillions() {
         return billion;
     }
 
+    @Override
     public QuantitiveNumberNames getTrillions() {
         return trillion;
     }

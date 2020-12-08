@@ -3,7 +3,7 @@ package tafqeetj.converters;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumberInWords {
+public class IntegerInWords {
     private String trillions;
     private String billions;
     private String millions;

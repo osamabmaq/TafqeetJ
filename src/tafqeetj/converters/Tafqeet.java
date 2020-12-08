@@ -1,18 +1,12 @@
 package tafqeetj.converters;
 
-import tafqeetj.converters.negative.NegativeQuantitiveNumberTafqeetFactory;
-import tafqeetj.converters.positive.PositiveQuantitiveNumberTafqeetFactory;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class Tafqeet {
     private static Tafqeet instance;
-    private final NumberToWordsConverter positiveConverter = new NumberToWordsConverter(
-            BasicNumberTafqeetFactory.getPositiveConverter(),
-            PositiveQuantitiveNumberTafqeetFactory.getInstance()
-    );
-    private final NumberToWordsConverter negativeConverter = new NumberToWordsConverter(
-            BasicNumberTafqeetFactory.getNegativeConverter(),
-            NegativeQuantitiveNumberTafqeetFactory.getInstance()
-    );
+    private final IntegerToWordsConverter integerConverter = IntegerToWordsConverter.getInstance();
+    private final DecimalToWordsConverter decimalConverter = DecimalToWordsConverter.getInstance();
 
     private Tafqeet() {
     }
@@ -24,8 +18,20 @@ public class Tafqeet {
     }
 
     public String doTafqeet(int number) {
-        if (number < 0)
-            return "سالب " + negativeConverter.convert(Math.abs(number));
-        return positiveConverter.convert(number);
+        if (number == Integer.MIN_VALUE)
+            return doTafqeet((long) number);
+        return integerConverter.convert(number);
+    }
+
+    public String doTafqeet(long number) {
+        return integerConverter.convert(number);
+    }
+
+    public String doTafqeet(BigInteger number) {
+        return integerConverter.convert(number);
+    }
+
+    public String doTafqeet(BigDecimal number) {
+        return decimalConverter.convert(number);
     }
 }

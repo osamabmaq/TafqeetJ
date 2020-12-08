@@ -4,19 +4,25 @@ import java.util.Objects;
 
 public class ThreeDigitsNumber {
     private final int number;
+    private final NumberSign sign;
 
-    private ThreeDigitsNumber(int number) {
+    private ThreeDigitsNumber(int number, NumberSign sign) {
         if (number < 0 || number > 999)
-            throw new IllegalArgumentException("Number must be between 1 and 999 inclusive "+number);
+            throw new IllegalArgumentException("Number must be between 1 and 999 inclusive " + number);
         this.number = number;
+        this.sign = sign;
     }
 
-    public static ThreeDigitsNumber of(int number) {
-        return new ThreeDigitsNumber(number);
+    public static ThreeDigitsNumber of(int number, NumberSign sign) {
+        return new ThreeDigitsNumber(number, sign);
     }
 
     public int getNumber() {
         return number;
+    }
+
+    public NumberSign getSign() {
+        return sign;
     }
 
     public boolean containsHundreds() {

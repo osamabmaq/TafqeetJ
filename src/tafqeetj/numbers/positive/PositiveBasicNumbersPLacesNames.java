@@ -14,7 +14,7 @@ public class PositiveBasicNumbersPLacesNames implements BasicNumberPlacesNames {
         ones = Map.ofEntries(
                 Map.entry(0, "صفر"),
                 Map.entry(1, "واحد"),
-                Map.entry(2, "إثنان"),
+                Map.entry(2, "اثنان"),
                 Map.entry(3, "ثلاثة"),
                 Map.entry(4, "أربعة"),
                 Map.entry(5, "خمسة"),
@@ -25,7 +25,7 @@ public class PositiveBasicNumbersPLacesNames implements BasicNumberPlacesNames {
         );
         composedNumbers = Map.ofEntries(
                 Map.entry(11, "أحد عشر"),
-                Map.entry(12, "إثنا عشر"),
+                Map.entry(12, "اثنا عشر"),
                 Map.entry(13, "ثلاثة عشر"),
                 Map.entry(14, "أربعة عشر"),
                 Map.entry(15, "خمسة عشر"),
@@ -57,10 +57,12 @@ public class PositiveBasicNumbersPLacesNames implements BasicNumberPlacesNames {
                 Map.entry(900, "تسعمئة")
         );
     }
-    private static final PositiveBasicNumbersPLacesNames instance = new PositiveBasicNumbersPLacesNames();
+    private static PositiveBasicNumbersPLacesNames instance;
     private PositiveBasicNumbersPLacesNames() {}
 
-    public static PositiveBasicNumbersPLacesNames getInstance() {
+    public synchronized static PositiveBasicNumbersPLacesNames getInstance() {
+        if (instance == null)
+            instance = new PositiveBasicNumbersPLacesNames();
         return instance;
     }
 
