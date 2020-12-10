@@ -1,6 +1,7 @@
 package tafqeetj.converters;
 
 import tafqeetj.exceptions.NumberOutOfRangeException;
+import tafqeetj.numbers.NumberSign;
 import tafqeetj.numbers.ThreeDigitsNumber;
 
 import java.math.BigInteger;
@@ -19,29 +20,33 @@ class IntegerToWordsConverter {
         return instance;
     }
 
-    public String convert(int number) {
+    public IntegerInWords convert(int number) {
         return convert((long) number);
     }
 
-    public String convert(BigInteger number) {
-        if (NumberConversionRange.isOutOfRange(number))
+    public IntegerInWords convert(byte number) {
+        return convert((long) number);
+    }
+
+    public IntegerInWords convert(short number) {
+        return convert((long) number);
+    }
+
+    public IntegerInWords convert(BigInteger number) {
+        if (TafqeetRangeChecker.isOutOfRange(number))
             throw new NumberOutOfRangeException();
         return convert(number.longValue());
     }
 
-    public String convert(byte number) {
-        return convert((long) number);
-    }
-
-    public String convert(long number) {
-        if (NumberConversionRange.isOutOfRange(number))
+    public IntegerInWords convert(long number) {
+        if (TafqeetRangeChecker.isOutOfRange(number))
             throw new NumberOutOfRangeException();
         if (number == 0)
-            return "صفر";
+            return IntegerInWords.ZERO;
         IntegerInWords convertedNumber = convertNumber(divider.divide(number));
         if (number < 0)
-            return "سالب " + convertedNumber.toString();
-        return convertedNumber.toString();
+            convertedNumber.setSign(NumberSign.NEGATIVE);
+        return convertedNumber;
     }
 
     private IntegerInWords convertNumber(Map<String, ThreeDigitsNumber> threeDigitsNumberMap) {

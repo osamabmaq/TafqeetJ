@@ -1,29 +1,12 @@
 package tafqeetj.converters;
 
 import tafqeetj.exceptions.NumberOutOfRangeException;
+import tafqeetj.numbers.DecimalRatioNames;
 import tafqeetj.numbers.NumberSign;
 
 import java.math.BigDecimal;
-import java.util.Map;
 
 public class DecimalToWordsConverter {
-    private final Map<Integer, String> decimalLengthName = Map.ofEntries(
-            Map.entry(1, "بالعشرة"),
-            Map.entry(2, "بالمئة"),
-            Map.entry(3, "بالألف"),
-            Map.entry(4, "بالعشرة آلاف"),
-            Map.entry(5, "بالمئة ألف"),
-            Map.entry(6, "بالمليون"),
-            Map.entry(7, "بالعشرة ملايين"),
-            Map.entry(8, "بالمئة مليون"),
-            Map.entry(9, "بالمليار"),
-            Map.entry(10, "بالعشرة مليارات"),
-            Map.entry(11, "بالمئة مليار"),
-            Map.entry(12, "بالترليون"),
-            Map.entry(13, "بالعشرة ترليونات"),
-            Map.entry(14, "بالمئة ترليون"),
-            Map.entry(15, "بالكوادرليون")
-    );
     private final IntegerToWordsConverter converter = IntegerToWordsConverter.getInstance();
 
     private static DecimalToWordsConverter instance;
@@ -37,40 +20,13 @@ public class DecimalToWordsConverter {
         return instance;
     }
 
-    public String convert(BigDecimal number) {
-        NumberSign sign = NumberSign.signOf(number);
-        number = number.abs();
+    public DecimalInWords convert(BigDecimal number) {
+        if (TafqeetRangeChecker.isOutOfRange(number))
+            throw new NumberOutOfRangeException();
         String[] numberLeftAndRight = number.toPlainString().split("\\.");
         if (numberLeftAndRight.length == 2)
             numberLeftAndRight[1] = removeTrailingZeroes(numberLeftAndRight[1]);
-        if (numberLeftAndRight[0].length() > 15 ||
-                (numberLeftAndRight.length == 2 && numberLeftAndRight[1].length() > 15))
-            throw new NumberOutOfRangeException();
-
-        String rightNumberConverted = "";
-        String leftNumberConverted = "";
-        if (sign == NumberSign.POSITIVE)
-            leftNumberConverted = converter.convert(Long.parseLong(numberLeftAndRight[0]));
-        else
-            leftNumberConverted = converter.convert(Long.parseLong("-" + numberLeftAndRight[0]));
-
-        if (numberLeftAndRight.length == 2)
-            rightNumberConverted = converter.convert(Long.parseLong("-" + numberLeftAndRight[1]))
-                    .replace("سالب ", "");
-        int leftNumberLength = 0;
-        if (!leftNumberConverted.equals(""))
-            leftNumberLength = removeTrailingZeroes(numberLeftAndRight[1]).length();
-        StringBuilder numberConverted = new StringBuilder();
-        if (leftNumberConverted.equals("صفر") && sign == NumberSign.NEGATIVE)
-            numberConverted.append("سالب ");
-        numberConverted.append(leftNumberConverted);
-        numberConverted.append(" فاصلة ");
-        numberConverted.append(rightNumberConverted);
-        if (rightNumberConverted.equals("صفر"))
-            return numberConverted.toString();
-        return numberConverted.append(" ")
-                .append(decimalLengthName.get(leftNumberLength))
-                .toString();
+        return convertToDecimalInWords(numberLeftAndRight);
     }
 
     private String removeTrailingZeroes(String number) {
@@ -80,5 +36,38 @@ public class DecimalToWordsConverter {
                 end = i;
             else break;
         return number.substring(0, end);
+    }
+
+    private DecimalInWords convertToDecimalInWords(String[] numberLeftAndRight) {
+        IntegerInWords leftNumber = convertLeftNumber(numberLeftAndRight[0]);
+        IntegerInWords rightNumber = convertRightNumber((numberLeftAndRight.length == 2 ? numberLeftAndRight[1] : "0"));
+        int decimalLength = 0;
+        if (numberLeftAndRight.length == 2)
+            decimalLength = numberLeftAndRight[1].length();
+        return buildDecimalInWords(decimalLength, rightNumber, leftNumber);
+    }
+
+    private IntegerInWords convertLeftNumber(String leftNumber) {
+        IntegerInWords number;
+        number = converter.convert(Long.parseLong(leftNumber));
+        if (leftNumber.startsWith("-"))
+            number.setSign(NumberSign.NEGATIVE);
+        return number;
+    }
+
+    private IntegerInWords convertRightNumber(String rightNumber) {
+        IntegerInWords number = converter.convert(Long.parseLong("-" + rightNumber));
+        number.setSign(NumberSign.POSITIVE);
+        return number;
+    }
+
+    private DecimalInWords buildDecimalInWords(int decimalLength,
+                                               IntegerInWords rightNumber, IntegerInWords leftNumber) {
+        DecimalInWords decimalInWords = new DecimalInWords();
+        decimalInWords.setNumberLeftTheComma(leftNumber);
+        decimalInWords.setNumberRightTheComma(rightNumber);
+        if (!leftNumber.toString().equals(""))
+            decimalInWords.setDecimalLengthName(DecimalRatioNames.getRatio(decimalLength));
+        return decimalInWords;
     }
 }
