@@ -22,7 +22,7 @@ public class DecimalToWordsConverter {
 
     public DecimalInWords convert(BigDecimal number) {
         if (TafqeetRangeChecker.isOutOfRange(number))
-            throw new NumberOutOfRangeException();
+            throw new NumberOutOfRangeException(number);
         String[] numberLeftAndRight = number.toPlainString().split("\\.");
         if (numberLeftAndRight.length == 2)
             numberLeftAndRight[1] = removeTrailingZeroes(numberLeftAndRight[1]);

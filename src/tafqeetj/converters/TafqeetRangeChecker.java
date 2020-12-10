@@ -8,7 +8,7 @@ public class TafqeetRangeChecker {
     public static final long INT_PRIMITIVES_MAX_ACCEPTED_VALUE = 999_999_999_999_999L;
     public static final BigInteger BI_MIN_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MIN_ACCEPTED_VALUE);
     public static final BigInteger BI_MAX_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MAX_ACCEPTED_VALUE);
-    public static final BigDecimal BD_MIN_ACCEPTED_VALUE = new BigDecimal("-0.000000000000001");
+    public static final BigDecimal BD_MIN_ACCEPTED_VALUE = new BigDecimal("-999999999999999.000000000000001");
     public static final BigDecimal BD_MAX_ACCEPTED_VALUE = new BigDecimal("999999999999999.999999999999999");
 
     private TafqeetRangeChecker() {

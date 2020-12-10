@@ -34,13 +34,13 @@ class IntegerToWordsConverter {
 
     public IntegerInWords convert(BigInteger number) {
         if (TafqeetRangeChecker.isOutOfRange(number))
-            throw new NumberOutOfRangeException();
+            throw new NumberOutOfRangeException(number);
         return convert(number.longValue());
     }
 
     public IntegerInWords convert(long number) {
         if (TafqeetRangeChecker.isOutOfRange(number))
-            throw new NumberOutOfRangeException();
+            throw new NumberOutOfRangeException(number);
         if (number == 0)
             return IntegerInWords.ZERO;
         IntegerInWords convertedNumber = convertNumber(divider.divide(number));
