@@ -8,8 +8,6 @@ public class TafqeetRangeChecker {
     public static final long INT_PRIMITIVES_MAX_ACCEPTED_VALUE = 999_999_999_999_999L;
     public static final BigInteger BI_MIN_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MIN_ACCEPTED_VALUE);
     public static final BigInteger BI_MAX_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MAX_ACCEPTED_VALUE);
-    public static final BigDecimal BD_MIN_ACCEPTED_VALUE = new BigDecimal("-999999999999999.000000000000001");
-    public static final BigDecimal BD_MAX_ACCEPTED_VALUE = new BigDecimal("999999999999999.999999999999999");
 
     private TafqeetRangeChecker() {
     }
@@ -35,6 +33,18 @@ public class TafqeetRangeChecker {
     }
 
     public static boolean isOutOfRange(BigDecimal number) {
-        return number.compareTo(BD_MIN_ACCEPTED_VALUE) < 0 || number.compareTo(BD_MAX_ACCEPTED_VALUE) > 0;
+        String[] numberLeftAndRight = number.abs().toPlainString().split("\\.");
+        if (numberLeftAndRight[0].length() > 15)
+            return true;
+        return (numberLeftAndRight.length == 2 && removeTrailingZeroes(numberLeftAndRight[1]).length() > 15);
+    }
+
+    private static String removeTrailingZeroes(String number) {
+        int end = number.length();
+        for (int i = number.length() - 1; i > 0; i--)
+            if (number.charAt(i) == '0')
+                end = i;
+            else break;
+        return number.substring(0, end);
     }
 }
