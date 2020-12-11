@@ -35,3 +35,9 @@ Tafqeet tafqeet = Tafqeet.getInstance();
 if(!TafqeetRangeChecker.isOutOfRange(-999_999_999_999_999L)
 
   System.out.println(tafqeet.doTafqeet(-999_999_999_999_999));
+  
+يمكن تنزيل ملف Jar الخاص بالمكتبة عبر هذا الرابط:
+
+https://drive.google.com/file/d/1wop48VFjIhHjyAoykZZQe2ZX4CNG0GAf/view?usp=sharing
+
+سيتم توفيرها على Maven لاحقًا.
