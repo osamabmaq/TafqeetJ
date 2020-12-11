@@ -1,6 +1,7 @@
 package tafqeetj.converters;
 
 import tafqeetj.numbers.NumberSign;
+import tafqeetj.numbers.positive.PositiveBasicNumbersPLacesNames;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,12 @@ public class IntegerInWords {
     private String millions;
     private String thousands;
     private String basicNumberGroup;
+
     public static final IntegerInWords ZERO;
 
     static {
         ZERO = new IntegerInWords();
-        ZERO.setBasicNumberGroup("صفر");
+        ZERO.setBasicNumberGroup(PositiveBasicNumbersPLacesNames.getInstance().getOnesMap().get(0));
     }
 
     public void setTrillions(String trillions) {
@@ -38,10 +40,6 @@ public class IntegerInWords {
 
     public void setSign(NumberSign sign) {
         this.sign = sign;
-    }
-
-    public NumberSign getSign() {
-        return sign;
     }
 
     public void setBasicNumberGroup(String basicNumberGroup) {

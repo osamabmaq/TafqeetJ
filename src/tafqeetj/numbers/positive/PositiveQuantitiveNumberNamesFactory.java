@@ -4,31 +4,31 @@ import tafqeetj.numbers.QuantitiveNumberNames;
 import tafqeetj.numbers.QuantitiveNumberNamesFactory;
 
 public class PositiveQuantitiveNumberNamesFactory implements QuantitiveNumberNamesFactory {
-    private final static QuantitiveNumberNames thousand;
-    private final static QuantitiveNumberNames million;
-    private final static QuantitiveNumberNames billion;
-    private final static QuantitiveNumberNames trillion;
+    private final static QuantitiveNumberNames thousands;
+    private final static QuantitiveNumberNames millions;
+    private final static QuantitiveNumberNames billions;
+    private final static QuantitiveNumberNames trillions;
 
     static {
-        thousand = new QuantitiveNumberNames(
+        thousands = new QuantitiveNumberNames(
                 "ألف",
                 "ألفان",
                 "آلاف",
                 "ألفًا"
         );
-        million = new QuantitiveNumberNames(
+        millions = new QuantitiveNumberNames(
                 "مليون",
                 "مليونان",
                 "ملايين",
                 "مليونًا"
         );
-        billion = new QuantitiveNumberNames(
+        billions = new QuantitiveNumberNames(
                 "مليار",
                 "ملياران",
                 "مليارات",
                 "مليارًا"
         );
-        trillion = new QuantitiveNumberNames(
+        trillions = new QuantitiveNumberNames(
                 "ترليون",
                 "ترليونان",
                 "ترليونات",
@@ -49,21 +49,21 @@ public class PositiveQuantitiveNumberNamesFactory implements QuantitiveNumberNam
 
     @Override
     public QuantitiveNumberNames getThousands() {
-        return thousand;
+        return thousands;
     }
 
     @Override
     public QuantitiveNumberNames getMillions() {
-        return million;
+        return millions;
     }
 
     @Override
     public QuantitiveNumberNames getBillions() {
-        return billion;
+        return billions;
     }
 
     @Override
     public QuantitiveNumberNames getTrillions() {
-        return trillion;
+        return trillions;
     }
 }

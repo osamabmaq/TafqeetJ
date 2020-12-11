@@ -47,7 +47,7 @@ public class QuantitiveNumberConverter {
 
     private String convertNumberBetweenZeroAndTwo(StringBuilder numberInWords, int number) {
         if (numberInWords.length() != 0)
-            numberInWords.append(" ").append(quantitiveNumberNames.getNameWhenEqualsOne());
+            numberInWords.append(" ").append(quantitiveNumberNames.getNameWhenEqualsOne()); //هذا للمئات، من مثل مئة ألف أو تسعمئة مليون
         if (number != 0 && numberInWords.length() != 0)
             numberInWords.append(" و");
         if (number == 1)
@@ -68,16 +68,13 @@ public class QuantitiveNumberConverter {
     }
 
     private String convertOnes(int ones) {
-        return basicNumberConverter.convertOnes(ones) +
-                " " +
-                quantitiveNumberNames.getNameWhenBetweenThreeAndTen();
+        return basicNumberConverter.convertOnes(ones) + " " + quantitiveNumberNames.getNameWhenBetweenThreeAndTen();
     }
 
 
     private String convertComposedNumber(int composedNumber) {
         return basicNumberConverter.convertComposedNumbers(composedNumber)
-                + " "
-                + quantitiveNumberNames.getNameWhenBetweenElevenAndNinetyNine();
+                + " " + quantitiveNumberNames.getNameWhenBetweenElevenAndNinetyNine();
     }
 
     private String convertTensWithOnes(ThreeDigitsNumberDisassembler disassembler) {
@@ -98,7 +95,6 @@ public class QuantitiveNumberConverter {
 
     private String convertTen() {
         return basicNumberConverter.convertTens(10)
-                + " "
-                + quantitiveNumberNames.getNameWhenBetweenThreeAndTen();
+                + " " + quantitiveNumberNames.getNameWhenBetweenThreeAndTen();
     }
 }

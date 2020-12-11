@@ -28,7 +28,7 @@ public class NumberToThreeDigitsNumberGroupsDivider {
     }
 
     private ThreeDigitsNumber createThreeDigitsNumberOf(String number, NumberSign sign) {
-        return ThreeDigitsNumber.of(Short.parseShort(number), sign);
+        return ThreeDigitsNumber.of(Integer.parseInt(number), sign);
     }
 
     private Map<String, ThreeDigitsNumber> mapWithGroupsNames(List<ThreeDigitsNumber> numbersGroups) {

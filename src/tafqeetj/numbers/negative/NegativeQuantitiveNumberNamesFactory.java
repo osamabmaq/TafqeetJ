@@ -4,31 +4,31 @@ import tafqeetj.numbers.QuantitiveNumberNames;
 import tafqeetj.numbers.QuantitiveNumberNamesFactory;
 
 public class NegativeQuantitiveNumberNamesFactory implements QuantitiveNumberNamesFactory {
-    private final static QuantitiveNumberNames thousand;
-    private final static QuantitiveNumberNames million;
-    private final static QuantitiveNumberNames billion;
-    private final static QuantitiveNumberNames trillion;
+    private final static QuantitiveNumberNames thousands;
+    private final static QuantitiveNumberNames millions;
+    private final static QuantitiveNumberNames billions;
+    private final static QuantitiveNumberNames trillions;
 
     static {
-        thousand = new QuantitiveNumberNames(
+        thousands = new QuantitiveNumberNames(
                 "ألف",
                 "ألفين",
                 "آلاف",
                 "ألفًا"
         );
-        million = new QuantitiveNumberNames(
+        millions = new QuantitiveNumberNames(
                 "مليون",
                 "مليونين",
                 "ملايين",
                 "مليونًا"
         );
-        billion = new QuantitiveNumberNames(
+        billions = new QuantitiveNumberNames(
                 "مليار",
                 "مليارين",
                 "مليارات",
                 "مليارًا"
         );
-        trillion = new QuantitiveNumberNames(
+        trillions = new QuantitiveNumberNames(
                 "ترليون",
                 "ترليونين",
                 "ترليونات",
@@ -36,12 +36,12 @@ public class NegativeQuantitiveNumberNamesFactory implements QuantitiveNumberNam
         );
     }
 
-    private static QuantitiveNumberNamesFactory instance;
+    private static NegativeQuantitiveNumberNamesFactory instance;
 
     private NegativeQuantitiveNumberNamesFactory() {
     }
 
-    public synchronized static QuantitiveNumberNamesFactory getInstance() {
+    public synchronized static NegativeQuantitiveNumberNamesFactory getInstance() {
         if (instance == null)
             instance = new NegativeQuantitiveNumberNamesFactory();
         return instance;
@@ -49,21 +49,21 @@ public class NegativeQuantitiveNumberNamesFactory implements QuantitiveNumberNam
 
     @Override
     public QuantitiveNumberNames getThousands() {
-        return thousand;
+        return thousands;
     }
 
     @Override
     public QuantitiveNumberNames getMillions() {
-        return million;
+        return millions;
     }
 
     @Override
     public QuantitiveNumberNames getBillions() {
-        return billion;
+        return billions;
     }
 
     @Override
     public QuantitiveNumberNames getTrillions() {
-        return trillion;
+        return trillions;
     }
 }

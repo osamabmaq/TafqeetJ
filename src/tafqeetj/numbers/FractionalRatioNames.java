@@ -2,8 +2,8 @@ package tafqeetj.numbers;
 
 import java.util.Map;
 
-public class DecimalRatioNames {
-    private static final Map<Integer, String> decimalRatioName = Map.ofEntries(
+public class FractionalRatioNames {
+    private static final Map<Integer, String> fractionalRatioNamesMap = Map.ofEntries(
             Map.entry(1, "بالعشرة"),
             Map.entry(2, "بالمئة"),
             Map.entry(3, "بالألف"),
@@ -21,10 +21,10 @@ public class DecimalRatioNames {
             Map.entry(15, "بالكوادرليون")
     );
 
-    private DecimalRatioNames() {
+    private FractionalRatioNames() {
     }
 
-    public static String getRatio(int numberOfDecimalDigits) {
-        return decimalRatioName.get(numberOfDecimalDigits);
+    public static String getRatio(int numberOfFractionalDigits) {
+        return fractionalRatioNamesMap.get(numberOfFractionalDigits);
     }
 }

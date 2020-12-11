@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class TafqeetRangeChecker {
-    public static final long INT_PRIMITIVES_MIN_ACCEPTED_VALUE = -999_999_999_999_999L;
-    public static final long INT_PRIMITIVES_MAX_ACCEPTED_VALUE = 999_999_999_999_999L;
-    public static final BigInteger BI_MIN_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MIN_ACCEPTED_VALUE);
-    public static final BigInteger BI_MAX_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MAX_ACCEPTED_VALUE);
+    public static final long INT_PRIMITIVES_MIN_SUPPORTED_VALUE = -999_999_999_999_999L;
+    public static final long INT_PRIMITIVES_MAX_SUPPORTED_VALUE = 999_999_999_999_999L;
+    public static final BigInteger BI_MIN_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MIN_SUPPORTED_VALUE);
+    public static final BigInteger BI_MAX_ACCEPTED_VALUE = BigInteger.valueOf(INT_PRIMITIVES_MAX_SUPPORTED_VALUE);
+    public static final int MAX_NUM_OF_DIGITS_LEFT_DECIMAL_POINT = 15;
+    public static final int MAX_NUM_OF_DIGITS_RIGHT_DECIMAL_POINT = 15;
 
     private TafqeetRangeChecker() {
     }
@@ -25,7 +27,7 @@ public class TafqeetRangeChecker {
     }
 
     public static boolean isOutOfRange(long number) {
-        return number < INT_PRIMITIVES_MIN_ACCEPTED_VALUE || number > INT_PRIMITIVES_MAX_ACCEPTED_VALUE;
+        return number < INT_PRIMITIVES_MIN_SUPPORTED_VALUE || number > INT_PRIMITIVES_MAX_SUPPORTED_VALUE;
     }
 
     public static boolean isOutOfRange(BigInteger number) {
@@ -34,9 +36,10 @@ public class TafqeetRangeChecker {
 
     public static boolean isOutOfRange(BigDecimal number) {
         String[] numberLeftAndRight = number.abs().toPlainString().split("\\.");
-        if (numberLeftAndRight[0].length() > 15)
+        if (numberLeftAndRight[0].length() > MAX_NUM_OF_DIGITS_LEFT_DECIMAL_POINT)
             return true;
-        return (numberLeftAndRight.length == 2 && removeTrailingZeroes(numberLeftAndRight[1]).length() > 15);
+        return numberLeftAndRight.length == 2
+                && removeTrailingZeroes(numberLeftAndRight[1]).length() > MAX_NUM_OF_DIGITS_RIGHT_DECIMAL_POINT;
     }
 
     private static String removeTrailingZeroes(String number) {

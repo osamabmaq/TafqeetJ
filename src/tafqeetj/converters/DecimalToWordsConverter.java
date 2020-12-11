@@ -1,12 +1,12 @@
 package tafqeetj.converters;
 
 import tafqeetj.exceptions.NumberOutOfRangeException;
-import tafqeetj.numbers.DecimalRatioNames;
+import tafqeetj.numbers.FractionalRatioNames;
 import tafqeetj.numbers.NumberSign;
 
 import java.math.BigDecimal;
 
-public class DecimalToWordsConverter {
+class DecimalToWordsConverter {
     private final IntegerToWordsConverter converter = IntegerToWordsConverter.getInstance();
 
     private static DecimalToWordsConverter instance;
@@ -14,7 +14,7 @@ public class DecimalToWordsConverter {
     private DecimalToWordsConverter() {
     }
 
-    public static DecimalToWordsConverter getInstance() {
+    public synchronized static DecimalToWordsConverter getInstance() {
         if (instance == null)
             instance = new DecimalToWordsConverter();
         return instance;
@@ -41,10 +41,10 @@ public class DecimalToWordsConverter {
     private DecimalInWords convertToDecimalInWords(String[] numberLeftAndRight) {
         IntegerInWords leftNumber = convertLeftNumber(numberLeftAndRight[0]);
         IntegerInWords rightNumber = convertRightNumber((numberLeftAndRight.length == 2 ? numberLeftAndRight[1] : "0"));
-        int decimalLength = 0;
+        int fractionalLength = 0;
         if (numberLeftAndRight.length == 2)
-            decimalLength = numberLeftAndRight[1].length();
-        return buildDecimalInWords(decimalLength, rightNumber, leftNumber);
+            fractionalLength = numberLeftAndRight[1].length();
+        return buildDecimalInWords(leftNumber, rightNumber, fractionalLength);
     }
 
     private IntegerInWords convertLeftNumber(String leftNumber) {
@@ -56,18 +56,20 @@ public class DecimalToWordsConverter {
     }
 
     private IntegerInWords convertRightNumber(String rightNumber) {
+        //يرسل الرقم يمين الفاصلة العشرية كسالب ليعامل معاملة المضاف إليه ويجر
         IntegerInWords number = converter.convert(Long.parseLong("-" + rightNumber));
+        //يتم تعيين الإشارة الموجبة كي لا يتم وضع كلمة سالب قبل الرقم يمين الفاصلة العشرية
         number.setSign(NumberSign.POSITIVE);
         return number;
     }
 
-    private DecimalInWords buildDecimalInWords(int decimalLength,
-                                               IntegerInWords rightNumber, IntegerInWords leftNumber) {
+    private DecimalInWords buildDecimalInWords(IntegerInWords leftNumber,
+                                               IntegerInWords rightNumber, int fractionalLength) {
         DecimalInWords decimalInWords = new DecimalInWords();
-        decimalInWords.setNumberLeftTheComma(leftNumber);
-        decimalInWords.setNumberRightTheComma(rightNumber);
+        decimalInWords.setNumberLeftDecimalPoint(leftNumber);
+        decimalInWords.setNumberRightDecimalPoint(rightNumber);
         if (!leftNumber.toString().equals(""))
-            decimalInWords.setDecimalLengthName(DecimalRatioNames.getRatio(decimalLength));
+            decimalInWords.setFractionalRatioName(FractionalRatioNames.getRatio(fractionalLength));
         return decimalInWords;
     }
 }

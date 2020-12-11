@@ -8,7 +8,7 @@ public class ThreeDigitsNumber {
 
     private ThreeDigitsNumber(int number, NumberSign sign) {
         if (number < 0 || number > 999)
-            throw new IllegalArgumentException("Number must be between 1 and 999 inclusive " + number);
+            throw new IllegalArgumentException("Number must be between 0 and 999 inclusive: " + number);
         this.number = number;
         this.sign = sign;
     }
