@@ -33,4 +33,5 @@
 Tafqeet tafqeet = Tafqeet.getInstance();
 
 if(!TafqeetRangeChecker.isOutOfRange(-999_999_999_999_999L)
+
   System.out.println(tafqeet.doTafqeet(-999_999_999_999_999));
