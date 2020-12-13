@@ -8,3 +8,4 @@
 /httpRequests/
 .DS_Store
 .gradle/*
+*.lock
