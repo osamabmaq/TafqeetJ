@@ -1,3 +1,12 @@
+# TODO
+- Update the Java code.
+- Make a Kotlin Version.
+- Use gradle.
+- Make KMM version.
+- Make Swift Version
+- Create Unit-tests.
+- Fix issues that result in wrong result.
+
 # TafqeetJ
 هذه مكتبة برمجية مكتوبة بلغة البرمجة جافا وهي مختصة بتفقيط الأعداد - أي تحويل العدد من الصيغة المكتوبة بالأرقام إلى الصيغة المكتوبة بالكلمات - وهي مفتوحة المصدر ومرخصة برخصة معهد ماساتشوستس للتكنولوجيا .
 
