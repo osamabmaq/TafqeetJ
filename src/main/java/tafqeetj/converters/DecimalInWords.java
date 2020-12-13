@@ -20,27 +20,32 @@ public class DecimalInWords {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DecimalInWords that = (DecimalInWords) o;
-        return numberLeftDecimalPoint.equals(that.numberLeftDecimalPoint)
-                && numberRightDecimalPoint.equals(that.numberRightDecimalPoint)
-                && Objects.equals(fractionalRatioName, that.fractionalRatioName);
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        DecimalInWords that = (DecimalInWords) other;
+        return this.numberLeftDecimalPoint.equals(that.numberLeftDecimalPoint)
+                && this.numberRightDecimalPoint.equals(that.numberRightDecimalPoint)
+                && Objects.equals(this.fractionalRatioName, that.fractionalRatioName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numberLeftDecimalPoint, numberRightDecimalPoint, fractionalRatioName);
+        return Objects.hash(this.numberLeftDecimalPoint, this.numberRightDecimalPoint, this.fractionalRatioName);
     }
 
     @Override
     public String toString() {
         StringBuilder numberInWords = new StringBuilder();
-        numberInWords.append(numberLeftDecimalPoint.toString());
-        numberInWords.append(" فاصلة ").append(numberRightDecimalPoint.toString());
-        if (!numberRightDecimalPoint.equals(IntegerInWords.ZERO))
-            numberInWords.append(" ").append(fractionalRatioName);
+        numberInWords.append(this.numberLeftDecimalPoint.toString());
+        numberInWords.append(" فاصلة ").append(this.numberRightDecimalPoint.toString());
+        if (!this.numberRightDecimalPoint.equals(IntegerInWords.ZERO)) {
+            numberInWords.append(" ").append(this.fractionalRatioName);
+        }
         return numberInWords.toString();
     }
 }

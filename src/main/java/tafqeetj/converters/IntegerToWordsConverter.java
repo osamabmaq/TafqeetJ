@@ -11,51 +11,55 @@ class IntegerToWordsConverter {
     private final NumberToThreeDigitsNumberGroupsDivider divider = new NumberToThreeDigitsNumberGroupsDivider();
     private static IntegerToWordsConverter instance;
 
-    private IntegerToWordsConverter() {
-    }
+    private IntegerToWordsConverter() {}
 
     public synchronized static IntegerToWordsConverter getInstance() {
-        if (instance == null)
-            instance = new IntegerToWordsConverter();
-        return instance;
+        if (IntegerToWordsConverter.instance == null) {
+            IntegerToWordsConverter.instance = new IntegerToWordsConverter();
+        }
+        return IntegerToWordsConverter.instance;
     }
 
     public IntegerInWords convert(int number) {
-        return convert((long) number);
+        return this.convert((long) number);
     }
 
     public IntegerInWords convert(byte number) {
-        return convert((long) number);
+        return this.convert((long) number);
     }
 
     public IntegerInWords convert(short number) {
-        return convert((long) number);
+        return this.convert((long) number);
     }
 
     public IntegerInWords convert(BigInteger number) {
-        if (TafqeetRangeChecker.isOutOfRange(number))
+        if (TafqeetRangeChecker.isOutOfRange(number)) {
             throw new NumberOutOfRangeException(number);
-        return convert(number.longValue());
+        }
+        return this.convert(number.longValue());
     }
 
     public IntegerInWords convert(long number) {
-        if (TafqeetRangeChecker.isOutOfRange(number))
+        if (TafqeetRangeChecker.isOutOfRange(number)) {
             throw new NumberOutOfRangeException(number);
-        if (number == 0)
+        }
+        if (number == 0) {
             return IntegerInWords.ZERO;
-        IntegerInWords convertedNumber = convertNumber(divider.divide(number));
-        if (number < 0)
+        }
+        IntegerInWords convertedNumber = convertNumber(this.divider.divide(number));
+        if (number < 0) {
             convertedNumber.setSign(NumberSign.NEGATIVE);
+        }
         return convertedNumber;
     }
 
     private IntegerInWords convertNumber(Map<String, ThreeDigitsNumber> threeDigitsNumberMap) {
         IntegerInWords integerInWords = new IntegerInWords();
-        integerInWords.setTrillions(convertThreeDigitsNumberIfPresent("trillions", threeDigitsNumberMap));
-        integerInWords.setBillions(convertThreeDigitsNumberIfPresent("billions", threeDigitsNumberMap));
-        integerInWords.setMillions(convertThreeDigitsNumberIfPresent("millions", threeDigitsNumberMap));
-        integerInWords.setThousands(convertThreeDigitsNumberIfPresent("thousands", threeDigitsNumberMap));
-        integerInWords.setBasicNumberGroup(convertBasicNumberIfPresent(threeDigitsNumberMap));
+        integerInWords.setTrillions(this.convertThreeDigitsNumberIfPresent("trillions", threeDigitsNumberMap));
+        integerInWords.setBillions(this.convertThreeDigitsNumberIfPresent("billions", threeDigitsNumberMap));
+        integerInWords.setMillions(this.convertThreeDigitsNumberIfPresent("millions", threeDigitsNumberMap));
+        integerInWords.setThousands(this.convertThreeDigitsNumberIfPresent("thousands", threeDigitsNumberMap));
+        integerInWords.setBasicNumberGroup(this.convertBasicNumberIfPresent(threeDigitsNumberMap));
         return integerInWords;
     }
 

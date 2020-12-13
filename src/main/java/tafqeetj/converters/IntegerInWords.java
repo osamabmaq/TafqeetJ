@@ -47,54 +47,63 @@ public class IntegerInWords {
     }
 
     public boolean isTrillionsPresent() {
-        return trillions != null && !trillions.isEmpty();
+        return this.trillions != null && !this.trillions.isEmpty();
     }
 
     public boolean isBillionsPresent() {
-        return billions != null && !billions.isEmpty();
+        return this.billions != null && !this.billions.isEmpty();
     }
 
     public boolean isMillionsPresent() {
-        return millions != null && !millions.isEmpty();
+        return this.millions != null && !this.millions.isEmpty();
     }
 
     public boolean isThousandsPresent() {
-        return thousands != null && !thousands.isEmpty();
+        return this.thousands != null && !this.thousands.isEmpty();
     }
 
     public boolean isBasicNumberGroupPresent() {
-        return basicNumberGroup != null && !basicNumberGroup.isEmpty();
+        return this.basicNumberGroup != null && !this.basicNumberGroup.isEmpty();
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        IntegerInWords that = (IntegerInWords) o;
-        return sign == that.sign
-                && Objects.equals(trillions, that.trillions) && Objects.equals(billions, that.billions)
-                && Objects.equals(millions, that.millions) && Objects.equals(thousands, that.thousands)
-                && Objects.equals(basicNumberGroup, that.basicNumberGroup);
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        IntegerInWords that = (IntegerInWords) other;
+        return this.sign == that.sign
+                && Objects.equals(this.trillions, that.trillions) && Objects.equals(this.billions, that.billions)
+                && Objects.equals(this.millions, that.millions) && Objects.equals(this.thousands, that.thousands)
+                && Objects.equals(this.basicNumberGroup, that.basicNumberGroup);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sign, trillions, billions, millions, thousands, basicNumberGroup);
+        return Objects.hash(this.sign, this.trillions, this.billions, this.millions, this.thousands, this.basicNumberGroup);
     }
 
     @Override
     public String toString() {
         List<String> numberInWords = new ArrayList<>();
-        if (isTrillionsPresent())
-            numberInWords.add(trillions);
-        if (isBillionsPresent())
-            numberInWords.add(billions);
-        if (isMillionsPresent())
-            numberInWords.add(millions);
-        if (isThousandsPresent())
-            numberInWords.add(thousands);
-        if (isBasicNumberGroupPresent())
-            numberInWords.add(basicNumberGroup);
-        return (sign == NumberSign.POSITIVE ? "" : "سالب ") + String.join(" و", numberInWords);
+        if (isTrillionsPresent()) {
+            numberInWords.add(this.trillions);
+        }
+        if (isBillionsPresent()) {
+            numberInWords.add(this.billions);
+        }
+        if (isMillionsPresent()) {
+            numberInWords.add(this.millions);
+        }
+        if (isThousandsPresent()) {
+            numberInWords.add(this.thousands);
+        }
+        if (isBasicNumberGroupPresent()) {
+            numberInWords.add(this.basicNumberGroup);
+        }
+        return (this.sign == NumberSign.POSITIVE ? "" : "سالب ") + String.join(" و", numberInWords);
     }
 }

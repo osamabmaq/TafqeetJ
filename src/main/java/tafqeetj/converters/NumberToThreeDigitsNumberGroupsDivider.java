@@ -6,9 +6,15 @@ import tafqeetj.numbers.ThreeDigitsNumber;
 import java.util.*;
 
 public class NumberToThreeDigitsNumberGroupsDivider {
-    private static final List<String> groupsNames = List.of(
-            "basicNumberGroup", "thousands", "millions", "billions", "trillions"
-    );
+    private static final List<String> groupsNames = new ArrayList<>();
+
+    static {
+        NumberToThreeDigitsNumberGroupsDivider.groupsNames.add("basicNumberGroup");
+        NumberToThreeDigitsNumberGroupsDivider.groupsNames.add("thousands");
+        NumberToThreeDigitsNumberGroupsDivider.groupsNames.add("millions");
+        NumberToThreeDigitsNumberGroupsDivider.groupsNames.add("billions");
+        NumberToThreeDigitsNumberGroupsDivider.groupsNames.add("trillions");
+    }
 
     public Map<String, ThreeDigitsNumber> divide(long number) {
         List<ThreeDigitsNumber> numbersGroups =
@@ -19,8 +25,9 @@ public class NumberToThreeDigitsNumberGroupsDivider {
     private List<ThreeDigitsNumber> getThreeDigitsNumberList(String number, NumberSign sign) {
         List<ThreeDigitsNumber> numbersGroups = new ArrayList<>();
         for (int i = number.length(), k = i - 3; i > 0; k = i - 3) {
-            if (k < 0)
+            if (k < 0) {
                 k = 0;
+            }
             numbersGroups.add(createThreeDigitsNumberOf(number.substring(k, i), sign));
             i -= 3;
         }
@@ -32,9 +39,10 @@ public class NumberToThreeDigitsNumberGroupsDivider {
     }
 
     private Map<String, ThreeDigitsNumber> mapWithGroupsNames(List<ThreeDigitsNumber> numbersGroups) {
-        Map<String, ThreeDigitsNumber> numbersGroupsMap = new HashMap<>();
-        for (int i = 0; i < numbersGroups.size(); i++)
-            numbersGroupsMap.put(groupsNames.get(i), numbersGroups.get(i));
+        Map<String, ThreeDigitsNumber> numbersGroupsMap = new HashMap<String, ThreeDigitsNumber>();
+        for (int i = 0; i < numbersGroups.size(); i++) {
+            numbersGroupsMap.put(NumberToThreeDigitsNumberGroupsDivider.groupsNames.get(i), numbersGroups.get(i));
+        }
         return Collections.unmodifiableMap(numbersGroupsMap);
     }
 }

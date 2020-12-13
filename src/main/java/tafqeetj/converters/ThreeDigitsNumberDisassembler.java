@@ -16,26 +16,30 @@ public class ThreeDigitsNumberDisassembler {
     }
 
     public int getHundreds() {
-        if (!threeDigitsNumber.containsHundreds())
+        if (!this.threeDigitsNumber.containsHundreds()) {
             throw new IllegalStateException("Number does not contain hundreds");
-        return (threeDigitsNumber.getNumber() / 100) * 100;
+        }
+        return (this.threeDigitsNumber.getNumber() / 100) * 100;
     }
 
     public int getTens() {
-        if (!threeDigitsNumber.containsTens())
+        if (!this.threeDigitsNumber.containsTens()) {
             throw new IllegalStateException("Number does not contain tens");
-        return ((threeDigitsNumber.getNumber() % 100) / 10) * 10;
+        }
+        return ((this.threeDigitsNumber.getNumber() % 100) / 10) * 10;
     }
 
     public int getComposedNumber() {
-        if (!threeDigitsNumber.containsComposedNumber())
+        if (!this.threeDigitsNumber.containsComposedNumber()) {
             throw new IllegalStateException("Number does not contain composed number");
-        return threeDigitsNumber.getNumber() % 100;
+        }
+        return this.threeDigitsNumber.getNumber() % 100;
     }
 
     public int getOnes() {
-        if (!threeDigitsNumber.containsOnes())
+        if (!this.threeDigitsNumber.containsOnes()) {
             throw new IllegalStateException("Number does not contain ones");
-        return (threeDigitsNumber.getNumber() % 100) % 10;
+        }
+        return (this.threeDigitsNumber.getNumber() % 100) % 10;
     }
 }

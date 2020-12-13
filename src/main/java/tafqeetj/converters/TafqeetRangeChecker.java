@@ -11,8 +11,7 @@ public class TafqeetRangeChecker {
     public static final int MAX_NUM_OF_DIGITS_LEFT_DECIMAL_POINT = 15;
     public static final int MAX_NUM_OF_DIGITS_RIGHT_DECIMAL_POINT = 15;
 
-    private TafqeetRangeChecker() {
-    }
+    private TafqeetRangeChecker() {}
 
     public static boolean isOutOfRange(int number) {
         return false; //All int datatype values are in the range
@@ -44,10 +43,13 @@ public class TafqeetRangeChecker {
 
     private static String removeTrailingZeroes(String number) {
         int end = number.length();
-        for (int i = number.length() - 1; i > 0; i--)
-            if (number.charAt(i) == '0')
+        for (int i = number.length() - 1; i > 0; i--) {
+            if (number.charAt(i) == '0') {
                 end = i;
-            else break;
+            } else {
+                break;
+            }
+        }
         return number.substring(0, end);
     }
 }

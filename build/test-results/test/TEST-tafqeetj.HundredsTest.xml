@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tafqeetj.HundredsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2020-12-13T19:06:15" hostname="Moussas-MacBook-Pro.local" time="0.014">
+  <properties/>
+  <testcase name="test600NumberToText" classname="tafqeetj.HundredsTest" time="0.011"/>
+  <testcase name="test900NumberToText" classname="tafqeetj.HundredsTest" time="0.0"/>
+  <testcase name="test100NumberToText" classname="tafqeetj.HundredsTest" time="0.0"/>
+  <testcase name="test400NumberToText" classname="tafqeetj.HundredsTest" time="0.001"/>
+  <testcase name="test700NumberToText" classname="tafqeetj.HundredsTest" time="0.0"/>
+  <testcase name="test200NumberToText" classname="tafqeetj.HundredsTest" time="0.0"/>
+  <testcase name="test500NumberToText" classname="tafqeetj.HundredsTest" time="0.0"/>
+  <testcase name="test800NumberToText" classname="tafqeetj.HundredsTest" time="0.0"/>
+  <testcase name="test300NumberToText" classname="tafqeetj.HundredsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

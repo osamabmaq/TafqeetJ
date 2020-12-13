@@ -1,9 +1,6 @@
-package tafqeetj.numbers.positive;
+package tafqeetj.numbers;
 
-import tafqeetj.numbers.QuantitiveNumberNames;
-import tafqeetj.numbers.QuantitiveNumberNamesFactory;
-
-public class PositiveQuantitiveNumberNamesFactory implements QuantitiveNumberNamesFactory {
+public abstract class QuantitativeNumberNamesFactory {
     private final static QuantitiveNumberNames thousands;
     private final static QuantitiveNumberNames millions;
     private final static QuantitiveNumberNames billions;
@@ -36,33 +33,18 @@ public class PositiveQuantitiveNumberNamesFactory implements QuantitiveNumberNam
         );
     }
 
-    private static PositiveQuantitiveNumberNamesFactory instance;
-
-    private PositiveQuantitiveNumberNamesFactory() {
-    }
-
-    public synchronized static PositiveQuantitiveNumberNamesFactory getInstance() {
-        if (instance == null)
-            instance = new PositiveQuantitiveNumberNamesFactory();
-        return instance;
-    }
-
-    @Override
     public QuantitiveNumberNames getThousands() {
         return thousands;
     }
 
-    @Override
     public QuantitiveNumberNames getMillions() {
         return millions;
     }
 
-    @Override
     public QuantitiveNumberNames getBillions() {
         return billions;
     }
 
-    @Override
     public QuantitiveNumberNames getTrillions() {
         return trillions;
     }

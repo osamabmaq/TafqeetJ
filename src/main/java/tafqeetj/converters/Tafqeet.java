@@ -13,32 +13,33 @@ public class Tafqeet {
     }
 
     public static synchronized Tafqeet getInstance() {
-        if (instance == null)
-            instance = new Tafqeet();
-        return instance;
+        if (Tafqeet.instance == null) {
+            Tafqeet.instance = new Tafqeet();
+        }
+        return Tafqeet.instance;
     }
 
     public String doTafqeet(int number) {
-        return integerConverter.convert(number).toString();
+        return this.integerConverter.convert(number).toString();
     }
 
     public String doTafqeet(byte number) {
-        return integerConverter.convert(number).toString();
+        return this.integerConverter.convert(number).toString();
     }
 
     public String doTafqeet(short number) {
-        return integerConverter.convert(number).toString();
+        return this.integerConverter.convert(number).toString();
     }
 
     public String doTafqeet(long number) {
-        return integerConverter.convert(number).toString();
+        return this.integerConverter.convert(number).toString();
     }
 
     public String doTafqeet(BigInteger number) {
-        return integerConverter.convert(number).toString();
+        return this.integerConverter.convert(number).toString();
     }
 
     public String doTafqeet(BigDecimal number) {
-        return decimalConverter.convert(number).toString();
+        return this.decimalConverter.convert(number).toString();
     }
 }

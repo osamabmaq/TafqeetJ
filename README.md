@@ -1,5 +1,5 @@
 # TODO
-- Update the Java code. WIP
+- Update the Java code. DONE
 - Make a Kotlin Version. DONE
 - Use gradle. DONE
 - Make KMM version.

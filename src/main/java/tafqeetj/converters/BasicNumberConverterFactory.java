@@ -9,14 +9,13 @@ public class BasicNumberConverterFactory {
     private static final BasicNumberConverter negativeConverter =
             new BasicNumberConverter(NegativeBasicNumberPlacesNames.getInstance());
 
-    private BasicNumberConverterFactory() {
-    }
+    private BasicNumberConverterFactory() {}
 
     public static BasicNumberConverter getPositiveConverter() {
-        return positiveConverter;
+        return BasicNumberConverterFactory.positiveConverter;
     }
 
     public static BasicNumberConverter getNegativeConverter() {
-        return negativeConverter;
+        return BasicNumberConverterFactory.negativeConverter;
     }
 }
