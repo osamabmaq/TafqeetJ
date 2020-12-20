@@ -25,7 +25,7 @@
 - BigDecimal
 
 <p dir='rtl' align='right'>
-ولم يتم دعم أنواع البيانات البدائية/الأولية العشرية الأخرى لصعوبة التعامل مع الأرقام على يمين الفاصلة فيها بسبب التمثيل الثنائي لها في ذاكرة الحاسوب.
+ولم يتم دعم أنواع البيانات البدائية/الأولية العشرية الأخرى لصعوبة التعامل مع الأرقام على يمين الفاصلة فيها بسبب مشاكل التمثيل الثنائي لها في ذاكرة الحاسوب.
 </p>
 
 <p dir='rtl' align='right'>
@@ -56,11 +56,11 @@
 مثال:
 </p>
 
+```java
 Tafqeet tafqeet = Tafqeet.getInstance();
-
-if(!TafqeetRangeChecker.isOutOfRange(-999_999_999_999_999L)
-
-  System.out.println(tafqeet.doTafqeet(-999_999_999_999_999L));
+if (!TafqeetRangeChecker.isOutOfRange(-999_999_999_999_999L)
+    System.out.println(tafqeet.doTafqeet(-999_999_999_999_999L));
+```
 
 <p dir='rtl' align='right'>
 يمكن تنزيل ملف Jar الخاص بالمكتبة عبر هذا الرابط:
