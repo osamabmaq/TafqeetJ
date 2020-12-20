@@ -1,3 +1,12 @@
+# TODO
+- Update the Java code. DONE
+- Make a Kotlin Version. DONE
+- Use gradle. DONE
+- Make KMM version.
+- Make Swift Version
+- Create Unit-tests. WIP
+- Fix issues that result in wrong result.
+
 # TafqeetJ
 
 <p dir='rtl' align='right'>
