@@ -11,8 +11,10 @@ public class NumberToThreeDigitsNumberGroupsDivider {
     );
 
     public Map<String, ThreeDigitsNumber> divide(long number) {
-        List<ThreeDigitsNumber> numbersGroups =
-                getThreeDigitsNumberList(Long.toString(Math.abs(number)), NumberSign.signOf(number));
+        List<ThreeDigitsNumber> numbersGroups = getThreeDigitsNumberList(
+                Long.toString(Math.abs(number)),
+                NumberSign.signOf(number)
+        );
         return mapWithGroupsNames(numbersGroups);
     }
 

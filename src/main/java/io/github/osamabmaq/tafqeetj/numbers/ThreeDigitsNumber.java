@@ -46,18 +46,19 @@ public class ThreeDigitsNumber {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ThreeDigitsNumber that = (ThreeDigitsNumber) o;
-        return number == that.number;
+        return number == that.number && sign == that.sign;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
+        return Objects.hash(number, sign);
     }
 
     @Override
     public String toString() {
         return "ThreeDigitsNumber{" +
                 "number=" + number +
+                ", sign=" + sign +
                 '}';
     }
 }

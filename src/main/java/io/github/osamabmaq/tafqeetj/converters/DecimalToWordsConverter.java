@@ -65,11 +65,9 @@ class DecimalToWordsConverter {
 
     private DecimalInWords buildDecimalInWords(IntegerInWords leftNumber,
                                                IntegerInWords rightNumber, int fractionalLength) {
-        DecimalInWords decimalInWords = new DecimalInWords();
-        decimalInWords.setNumberLeftDecimalPoint(leftNumber);
-        decimalInWords.setNumberRightDecimalPoint(rightNumber);
+        String fractionRatioName = "";
         if (!leftNumber.toString().equals(""))
-            decimalInWords.setFractionalRatioName(FractionalRatioNames.getRatio(fractionalLength));
-        return decimalInWords;
+            fractionRatioName = FractionalRatioNames.getRatio(fractionalLength);
+        return new DecimalInWords(leftNumber, rightNumber, fractionRatioName);
     }
 }

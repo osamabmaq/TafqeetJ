@@ -7,16 +7,13 @@ public class DecimalInWords {
     private IntegerInWords numberRightDecimalPoint;
     private String fractionalRatioName;
 
-    public void setNumberLeftDecimalPoint(IntegerInWords numberLeftDecimalPoint) {
-        this.numberLeftDecimalPoint = numberLeftDecimalPoint;
-    }
+    public DecimalInWords(IntegerInWords numberLeftDecimalPoint,
+                          IntegerInWords numberRightDecimalPoint,
+                          String fractionalRatioName) {
 
-    public void setNumberRightDecimalPoint(IntegerInWords numberRightDecimalPoint) {
-        this.numberRightDecimalPoint = numberRightDecimalPoint;
-    }
-
-    public void setFractionalRatioName(String decimalLengthName) {
-        this.fractionalRatioName = decimalLengthName;
+        this.numberLeftDecimalPoint = Objects.requireNonNull(numberLeftDecimalPoint);
+        this.numberRightDecimalPoint = Objects.requireNonNull(numberRightDecimalPoint);
+        this.fractionalRatioName = Objects.requireNonNull(fractionalRatioName);
     }
 
     @Override

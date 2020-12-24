@@ -21,8 +21,7 @@ public class BasicNumberConverter {
         }
 
         if (number.containsComposedNumber())
-            return numberInWords.append(convertComposedNumbers(disassembler.getComposedNumber()))
-                    .toString();
+            return numberInWords.append(convertComposedNumbers(disassembler.getComposedNumber())).toString();
 
         if (number.containsOnes())
             numberInWords.append(convertOnes(disassembler.getOnes()));
