@@ -20,7 +20,7 @@ class DecimalInWordsTest {
     @Test
     void should_GenerateZeroPointRightNumberAndFractionalRatioName_WhenPassingZeroAndRightNumberAndFractionalRatioName() {
         DecimalInWords decimal = new DecimalInWords(
-                IntegerInWords.ZERO, createRightNumber(), "بالكوادرليون"
+                IntegerInWords.createZero(), createRightNumber(), "بالكوادرليون"
         );
         String expected = "صفر"
                 + " فاصلة "
@@ -32,7 +32,7 @@ class DecimalInWordsTest {
     @Test
     void should_GenerateLeftNumberPointZero_WhenPassingLeftNumberPointZero() {
         DecimalInWords decimal = new DecimalInWords(
-                createLeftNumber(), IntegerInWords.ZERO, ""
+                createLeftNumber(), IntegerInWords.createZero(), ""
         );
         String expected = "ترليون ومئة مليار ومليار ومليونان ومئتا ألف ومئة وخمسة وستون"
                 + " فاصلة "
@@ -43,7 +43,7 @@ class DecimalInWordsTest {
     @Test
     void should_GenerateZeroPointZero_WhenPassingZeroPointZero() {
         DecimalInWords decimal = new DecimalInWords(
-                IntegerInWords.ZERO, IntegerInWords.ZERO, ""
+                IntegerInWords.createZero(), IntegerInWords.createZero(), ""
         );
         String expected = "صفر"
                 + " فاصلة "

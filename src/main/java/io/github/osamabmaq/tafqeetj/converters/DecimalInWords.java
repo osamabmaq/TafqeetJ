@@ -3,16 +3,17 @@ package io.github.osamabmaq.tafqeetj.converters;
 import java.util.Objects;
 
 public class DecimalInWords {
-    private IntegerInWords numberLeftDecimalPoint;
-    private IntegerInWords numberRightDecimalPoint;
-    private String fractionalRatioName;
+    private final IntegerInWords numberLeftDecimalPoint;
+    private final IntegerInWords numberRightDecimalPoint;
+    private final String fractionalRatioName;
 
     public DecimalInWords(IntegerInWords numberLeftDecimalPoint,
                           IntegerInWords numberRightDecimalPoint,
                           String fractionalRatioName) {
-
         this.numberLeftDecimalPoint = Objects.requireNonNull(numberLeftDecimalPoint);
         this.numberRightDecimalPoint = Objects.requireNonNull(numberRightDecimalPoint);
+        if (numberRightDecimalPoint.equals(IntegerInWords.createZero()))
+            fractionalRatioName = "";
         this.fractionalRatioName = Objects.requireNonNull(fractionalRatioName);
     }
 
@@ -23,7 +24,7 @@ public class DecimalInWords {
         DecimalInWords that = (DecimalInWords) o;
         return numberLeftDecimalPoint.equals(that.numberLeftDecimalPoint)
                 && numberRightDecimalPoint.equals(that.numberRightDecimalPoint)
-                && Objects.equals(fractionalRatioName, that.fractionalRatioName);
+                && fractionalRatioName.equals(that.fractionalRatioName);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class DecimalInWords {
         StringBuilder numberInWords = new StringBuilder();
         numberInWords.append(numberLeftDecimalPoint.toString());
         numberInWords.append(" فاصلة ").append(numberRightDecimalPoint.toString());
-        if (!numberRightDecimalPoint.equals(IntegerInWords.ZERO))
+        if (!fractionalRatioName.isEmpty())
             numberInWords.append(" ").append(fractionalRatioName);
         return numberInWords.toString();
     }

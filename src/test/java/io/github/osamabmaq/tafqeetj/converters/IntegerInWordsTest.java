@@ -1,5 +1,6 @@
 package io.github.osamabmaq.tafqeetj.converters;
 
+import io.github.osamabmaq.tafqeetj.numbers.NumberSign;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -142,6 +143,28 @@ class IntegerInWordsTest {
 
             assertEquals("ترليون ومئة مليار ومليار ومليونان ومئتا ألف ومئة وخمسة وستون", integerInWords.toString());
         }
+
+        @Test
+        void should_GeneratePrefix_سالب_WhenSettingNegativeSign() {
+            integerInWords.setBasicNumberGroup("مئة وخمسة وستين");
+            integerInWords.setThousands("مئتي ألف");
+            integerInWords.setMillions("مليونين");
+            integerInWords.setBillions("مئة مليار ومليار");
+            integerInWords.setTrillions("ترليون");
+            integerInWords.setSign(NumberSign.NEGATIVE);
+            assertEquals("سالب ترليون ومئة مليار ومليار ومليونين ومئتي ألف ومئة وخمسة وستين", integerInWords.toString());
+        }
+
+        @Test
+        void should_GenerateNumberWithoutSignPrefix_WhenSettingPositiveSign() {
+            integerInWords.setBasicNumberGroup("مئة وخمسة وستون");
+            integerInWords.setThousands("مئتا ألف");
+            integerInWords.setMillions("مليونان");
+            integerInWords.setBillions("مئة مليار ومليار");
+            integerInWords.setTrillions("ترليون");
+            integerInWords.setSign(NumberSign.POSITIVE);
+            assertEquals("ترليون ومئة مليار ومليار ومليونان ومئتا ألف ومئة وخمسة وستون", integerInWords.toString());
+        }
     }
 
     @Nested
@@ -267,6 +290,7 @@ class IntegerInWordsTest {
             assertFalse(integerInWords.isBillionsPresent());
             assertFalse(integerInWords.isTrillionsPresent());
         }
+
         @Test
         void should_GenerateThousands_WhenSettingOnlyThousands() {
             integerInWords.setThousands("مئتا ألف");
@@ -372,5 +396,17 @@ class IntegerInWordsTest {
             assertFalse(integerInWords.isThousandsPresent());
             assertFalse(integerInWords.isMillionsPresent());
         }
+    }
+
+    @Test
+    void should_ReturnPositiveSign_WhenSettingSignAsPositive() {
+        integerInWords.setSign(NumberSign.POSITIVE);
+        assertEquals(NumberSign.POSITIVE, integerInWords.getSign());
+    }
+
+    @Test
+    void should_ReturnNegativeSign_WhenSettingSignAsNegative() {
+        integerInWords.setSign(NumberSign.NEGATIVE);
+        assertEquals(NumberSign.NEGATIVE, integerInWords.getSign());
     }
 }

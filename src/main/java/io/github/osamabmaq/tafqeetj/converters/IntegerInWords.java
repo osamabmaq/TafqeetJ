@@ -15,35 +15,47 @@ public class IntegerInWords {
     private String thousands;
     private String basicNumberGroup;
 
-    public static final IntegerInWords ZERO;
-
-    static {
-        ZERO = new IntegerInWords();
-        ZERO.setBasicNumberGroup(PositiveBasicNumbersPLacesNames.getInstance().getOnesMap().get(0));
+    public static IntegerInWords createZero() {
+        IntegerInWords zero = new IntegerInWords();
+        zero.setBasicNumberGroup(PositiveBasicNumbersPLacesNames.getInstance().getOnesMap().get(0));
+        return zero;
     }
 
     public void setTrillions(String trillions) {
+        if (trillions.isEmpty())
+            return;
         this.trillions = trillions;
     }
 
     public void setBillions(String billions) {
+        if (billions.isEmpty())
+            return;
         this.billions = billions;
     }
 
     public void setMillions(String millions) {
+        if (millions.isEmpty())
+            return;
         this.millions = millions;
     }
 
     public void setThousands(String thousands) {
+        if (thousands.isEmpty())
+            return;
         this.thousands = thousands;
     }
 
-    public void setSign(NumberSign sign) {
-        this.sign = sign;
-    }
 
     public void setBasicNumberGroup(String basicNumberGroup) {
+        if (basicNumberGroup.isEmpty())
+            return;
         this.basicNumberGroup = basicNumberGroup;
+    }
+
+    public void setSign(NumberSign sign) {
+        if (sign == null)
+            return;
+        this.sign = sign;
     }
 
     public boolean isTrillionsPresent() {
@@ -66,14 +78,20 @@ public class IntegerInWords {
         return basicNumberGroup != null && !basicNumberGroup.isEmpty();
     }
 
+    public NumberSign getSign() {
+        return sign;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IntegerInWords that = (IntegerInWords) o;
         return sign == that.sign
-                && Objects.equals(trillions, that.trillions) && Objects.equals(billions, that.billions)
-                && Objects.equals(millions, that.millions) && Objects.equals(thousands, that.thousands)
+                && Objects.equals(trillions, that.trillions)
+                && Objects.equals(billions, that.billions)
+                && Objects.equals(millions, that.millions)
+                && Objects.equals(thousands, that.thousands)
                 && Objects.equals(basicNumberGroup, that.basicNumberGroup);
     }
 

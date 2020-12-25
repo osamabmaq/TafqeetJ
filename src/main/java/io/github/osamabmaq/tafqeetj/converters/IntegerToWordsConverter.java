@@ -42,7 +42,7 @@ class IntegerToWordsConverter {
         if (TafqeetRangeChecker.isOutOfRange(number))
             throw new NumberOutOfRangeException(number);
         if (number == 0)
-            return IntegerInWords.ZERO;
+            return IntegerInWords.createZero();
         IntegerInWords convertedNumber = convertNumber(divider.divide(number));
         if (number < 0)
             convertedNumber.setSign(NumberSign.NEGATIVE);
