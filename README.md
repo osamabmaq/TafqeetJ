@@ -66,13 +66,6 @@ if (!TafqeetRangeChecker.isOutOfRange(-999_999_999_999_999L)
 ```
 
 <p dir='rtl' align='right'>
-يمكن تنزيل ملف Jar الخاص بالمكتبة عبر هذا الرابط:
-</p>
-
-
-https://drive.google.com/file/d/1wop48VFjIhHjyAoykZZQe2ZX4CNG0GAf/view?usp=sharing
-
-<p dir='rtl' align='right'>
 يمكن إرفاق المكتبة في مشاريع Maven باستخدام :
 </p>
 
