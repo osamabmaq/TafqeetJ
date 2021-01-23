@@ -1,3 +1,6 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.osamabmaq/TafqeetJ/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.osamabmaq/TafqeetJ)
+
+
 # TafqeetJ
 
 <p dir='rtl' align='right'>
@@ -63,12 +66,13 @@ if (!TafqeetRangeChecker.isOutOfRange(-999_999_999_999_999L)
 ```
 
 <p dir='rtl' align='right'>
-يمكن تنزيل ملف Jar الخاص بالمكتبة عبر هذا الرابط:
+يمكن إرفاق المكتبة في مشاريع Maven باستخدام :
 </p>
 
-
-https://drive.google.com/file/d/1wop48VFjIhHjyAoykZZQe2ZX4CNG0GAf/view?usp=sharing
-
-<p dir='rtl' align='right'>
-سيتم توفيرها على Maven لاحقًا.
-</p>
+```x
+<dependency>
+    <groupId>io.github.osamabmaq</groupId>
+    <artifactId>TafqeetJ</artifactId>
+    <version>1.1-RELEASE</version>
+</dependency>
+```
